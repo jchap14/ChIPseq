@@ -1,0 +1,3 @@
+for x in `/bin/ls *.bam` ; do bash macs2sub.sh $x; done
+
+#submit using this command; specify *.bam & .sh script to run
