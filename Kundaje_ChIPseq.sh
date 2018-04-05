@@ -9,7 +9,7 @@ source activate aquas_chipseq_py3
 ##### specify variables to pass to chipseq.py
 FASTQ1=$1
 NAME=`basename $FASTQ1 .trim.R1.fq.gz`
-FASTQ2==`echo $NAME.trim.R2.fq.gz`
+FASTQ2=`echo $NAME.trim.R2.fq.gz`
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
