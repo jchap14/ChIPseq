@@ -23,7 +23,7 @@ source activate aquas_chipseq_py3
 
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type histone --screen $NAME -pe -species hg19 -nth 12 \
--fastq1 $FASTQ1 -fastq2 FASTQ2
+-fastq1 $FASTQ1 -fastq2 $FASTQ2
 
 ## deactivate conda environment
 EOF
