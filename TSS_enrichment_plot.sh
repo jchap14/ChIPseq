@@ -10,7 +10,7 @@
 ##### set environment
 source activate TSS_enrichment_py27
 
-##### specify variables to pass to py_peak_calling_James.py
+##### specify variables to pass to TSS_enrichment_plot.py
 BAM_FILE=`echo $1`
 ## THRESHOLD is not an FDR, but score based?
 PREFIX=`basename $BAM_FILE .bam`

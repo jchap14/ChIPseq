@@ -11,7 +11,7 @@ from datetime import datetime
 import argparse
 
 ##### set working directory
-os.chdir('/Users/jchap12/Downloads')
+# os.chdir('/Users/jchap12/Downloads')
 
 ##### Define parseArguments to use positional variables in bash submission
 def parseArguments():
