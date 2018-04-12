@@ -45,7 +45,10 @@ cat > $NAME.tempscript.sh << EOF
 ## add modules & source specific conda environment
 source activate TSS_enrichment_py27
 
-## run script
+## index bam file
+samtools index $BAM_FILE
+
+## run python script
 python $EXE_DIR\TSS_enrichment_plot.py \
 --bam_file $BAM_FILE \
 --prefix $PREFIX \
