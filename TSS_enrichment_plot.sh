@@ -27,7 +27,7 @@ GREENLEAF_NORM="True"
 #
 NAME=`echo $PREFIX`
 EXE_DIR="/srv/gsfs0/projects/snyder/chappell/scripts/ChIPseq/" #scg
-EXE_DIR="/Users/jchap12/Desktop/BIOINFORMATICS/ChIPseq/" #local
+# EXE_DIR="/Users/jchap12/Desktop/BIOINFORMATICS/ChIPseq/" #local
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
