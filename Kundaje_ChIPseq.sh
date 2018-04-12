@@ -13,7 +13,8 @@ FASTQR1=$1
 # FASTQR2=`echo $NAME.untrimmed.R2.fq.gz`
 NAME=`basename $FASTQR1 .trim.R1.fq.gz`
 FASTQR2=`echo $NAME.trim.R2.fq.gz`
-
+CHIPTYPE="histone"
+# CHIPTYPE="TF"
 
 
 ## create tempscript
