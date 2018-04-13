@@ -46,7 +46,13 @@ cat > $NAME.tempscript.sh << EOF
 source activate TSS_enrichment_py27
 
 ## index bam file
-samtools index $BAM_FILE
+if [ -f $(echo $BAM_FILE.bai) ]
+then
+    echo "Index Exists"
+else
+    samtools index $BAM_FILE    
+fi
+
 
 ## run python script
 python $EXE_DIR\TSS_enrichment_plot.py \
