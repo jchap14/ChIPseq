@@ -25,6 +25,9 @@ BLACKLIST_REGIONS=`echo $ANNO_DIR\hg19EncodeMapabilityBlacklist.bed`
 PROM_REGIONS=`echo $ANNO_DIR\reg2map_honeybadger2_dnase_prom_p2.bed.gz`
 ENH_REGIONS=`echo $ANNO_DIR\reg2map_honeybadger2_dnase_enh_p2.bed.gz`
 PEAKS=`echo $OUTNAME.FDRe1.Peaks.bed`
+JZ_K27ac_REGIONS=`echo $ANNO_DIR\K27ac_LPAEC_UA019_WT_M.filt.narrowPeak.gz`
+JZ_K4me1_REGIONS=`echo $ANNO_DIR\K4me1_LPAEC_UA019_WT_M.filt.narrowPeak.gz`
+HUVEC_K27me3_REGIONS=`echo $ANNO_DIR\HUVEC.K27me3.merged.bed.gz`
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
@@ -58,7 +61,10 @@ python $EXE_DIR\get_signal_to_noise.py \
 --blacklist_regions $BLACKLIST_REGIONS \
 --prom_regions $PROM_REGIONS \
 --enh_regions $ENH_REGIONS \
---peaks $PEAKS
+--peaks $PEAKS \
+--jz_k27ac_regions $JZ_K27ac_REGIONS \
+--jz_k4me1_regions $JZ_K4me1_REGIONS \
+--huvec_k27me3_regions $HUVEC_K27me3_REGIONS
 
 ## deactivate conda environment
 # source deactivate

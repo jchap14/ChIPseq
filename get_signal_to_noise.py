@@ -65,6 +65,9 @@ def parseArguments():
     parser.add_argument('--prom_regions', help='Promoter region file')
     parser.add_argument('--enh_regions', help='Enhancer region file')
     parser.add_argument('--peaks', help='Peak file')
+    parser.add_argument('--jz_k27ac_regions', help='Judith Zaugg K27ac peaks')
+    parser.add_argument('--jz_k4me1_regions', help='Judith Zaugg K4me1 peaks')
+    parser.add_argument('--huvec_k27me3_regions', help='Merged HUVEC K27me3 peaks')
 
     # Print version
     parser.add_argument('--version', action='version', version='%(prog)s - Version 1.0')
@@ -101,7 +104,8 @@ def get_fract_reads_in_regions(reads_bed, regions_bed):
 
 ##### Function: run get_fract_reads_in_regions on reginon
 def get_signal_to_noise(final_bed, dnase_regions, blacklist_regions, 
-                        prom_regions,enh_regions, peaks):
+                        prom_regions,enh_regions, peaks, jz_k27ac_regions,
+                        jz_k4me1_regions, huvec_k27me3_regions):
     '''
     Given region sets, determine whether reads are
     falling in or outside these regions
@@ -122,10 +126,21 @@ def get_signal_to_noise(final_bed, dnase_regions, blacklist_regions,
 
     # Peak regions
     reads_peaks, fract_peaks = get_fract_reads_in_regions(final_bed, peaks)
+    
+    # JZ K27ac regions
+    reads_jz_k27ac, fract_jz_k27ac = get_fract_reads_in_regions(final_bed, jz_k27ac_regions)
+
+    # JZ K4me1 regions
+    reads_jz_k4me1, fract_jz_k4me1 = get_fract_reads_in_regions(final_bed, jz_k4me1_regions)
+
+    # HUVEC K27me3 regions
+    reads_huvec_k27me3, fract_huvec_k27me3 = get_fract_reads_in_regions(final_bed, huvec_k27me3_regions)
+
 
     return reads_dnase, fract_dnase, reads_blacklist, fract_blacklist, \
-        reads_prom, fract_prom, reads_enh, fract_enh, reads_peaks, \
-        fract_peaks
+        reads_prom, fract_prom, reads_enh, fract_enh, \
+        reads_peaks, fract_peaks, reads_jz_k27ac, fract_jz_k27ac, \
+        reads_jz_k4me1, fract_jz_k4me1, reads_huvec_k27me3, fract_huvec_k27me3
 
 
 ##### This is run in the main function
@@ -156,24 +171,28 @@ if __name__ == '__main__':
     ## combines all 5 function calls above
     reads_dnase, fract_dnase, reads_blacklist, fract_blacklist, \
     reads_prom, fract_prom, reads_enh, fract_enh, \
-    reads_peaks, fract_peaks = get_signal_to_noise(args.final_bed,
-                                                    args.dnase_regions,
-                                                    args.blacklist_regions,
-                                                    args.prom_regions,
-                                                    args.enh_regions,
-                                                    args.peaks)
-
+    reads_peaks, fract_peaks, reads_jz_k27ac, fract_jz_k27ac, \
+    reads_jz_k4me1, fract_jz_k4me1, reads_huvec_k27me3, fract_huvec_k27me3 \
+    = get_signal_to_noise(args.final_bed, args.dnase_regions, args.blacklist_regions, \
+    args.prom_regions, args.enh_regions, args.peaks, args.jz_k27ac_regions, \
+    args.jz_k4me1_regions, args.huvec_k27me3_regions)
+    
     ##### get total_read_count
     total_read_count = get_num_lines(args.final_bed)
 
     ##### print results to output file (or create specific output file)
     df = pd.DataFrame([[str(args.outname),total_read_count, reads_dnase, fract_dnase,
                         reads_blacklist, fract_blacklist, reads_prom, fract_prom,
-                        reads_enh, fract_enh, reads_peaks,fract_peaks,]],
+                        reads_enh, fract_enh, reads_peaks,fract_peaks, reads_jz_k27ac,
+                        fract_jz_k27ac, reads_jz_k4me1, fract_jz_k4me1,
+                        reads_huvec_k27me3, fract_huvec_k27me3]],
         columns=['Condition','TotalReads','ReadsInDNAse','PercInDNAse',
                  'ReadsInBlacklist', 'PercInBlacklist',
                  'ReadsInPromoters', 'PercInPromoters',
                  'ReadsInEnhancers', 'PercInEnhancers',
-                 'ReadsInPeaks', 'PercInPeaks'])
+                 'ReadsInPeaks', 'PercInPeaks',
+                 'ReadsInJZk27ac', 'PercInJZk27ac',
+                 'ReadsInJZk4me1', 'PercInJZk4me1',
+                 'ReadsInHUVEC27me3', 'PercInHUVEC27me3'])
     
     df.to_csv(path_or_buf=str(args.outname + ".signalToNoise.csv"), index=False)
