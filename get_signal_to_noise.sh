@@ -2,7 +2,7 @@
 # This is the submission script for "get_signal_to_noise.py"
 
 # submit for a specific sample
-# bash TSS_enrichment_plot.sh $SAMPLE.nmSort.bam
+# bash get_signal_to_noise.sh $SAMPLE.nmSort.bam
 
 ##### submit for all samples in CWD
 # for x in `/bin/ls *.nmSort.bam` ; do bash get_signal_to_noise.sh $x; done
@@ -61,11 +61,11 @@ python $EXE_DIR\get_signal_to_noise.py \
 --peaks $PEAKS
 
 ## deactivate conda environment
-source deactivate
+# source deactivate
 EOF
 
 ## qsub then remove the tempscript
-bash $NAME.tempscript.sh #local
-# qsub $NAME.tempscript.sh #scg
+#bash $NAME.tempscript.sh #local
+qsub $NAME.tempscript.sh #scg
 sleep 1
 rm $NAME.tempscript.sh
