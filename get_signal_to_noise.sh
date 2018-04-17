@@ -13,7 +13,7 @@
 ##### specify variables to pass to get_signal_to_noise.py
 BAMFILE=`echo $1`
 OUTNAME=`basename $BAMFILE .nmSort.bam`
-FINAL_BED=`echo $OUTNAME.bed`
+FINAL_BED=`echo $OUTNAME.bam.bed`
 ## set annotation & executables directory for either local or scg use
 ANNO_DIR="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/" #scg
 # ANNO_DIR="/Users/jchap12/Desktop/BIOINFORMATICS/Annotations/hg19/" #local
