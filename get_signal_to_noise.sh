@@ -29,7 +29,7 @@ PEAKS=`echo $OUTNAME.FDRe1.Peaks.bed`
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash
-#$ -N $NAME.TSSplot
+#$ -N $OUTNAME.SigToNoise
 #$ -S /bin/bash
 #$ -j y
 #$ -cwd
