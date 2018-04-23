@@ -90,17 +90,16 @@ def get_fract_reads_in_regions(reads_bed, regions_bed):
     intersect_read_count = int(run_shell_cmd(cmd))
     total_read_count = get_num_lines(reads_bed)
     fract_reads = float(intersect_read_count) / total_read_count
-
     return intersect_read_count, fract_reads
 
 ##### set temporary variables to test functions
-#outname='SC3.chr10'
-#final_bed='/Users/jchap12/Downloads/SC3.chr10.bed'
-#dnase_regions="/Users/jchap12/Desktop/BIOINFORMATICS/Annotations/hg19/reg2map_honeybadger2_dnase_all_p10_ucsc.bed.gz"
-#blacklist_regions="/Users/jchap12/Desktop/BIOINFORMATICS/Annotations/hg19/hg19EncodeMapabilityBlacklist.bed"
-#prom_regions="/Users/jchap12/Desktop/BIOINFORMATICS/Annotations/hg19/reg2map_honeybadger2_dnase_prom_p2.bed.gz"
-#enh_regions="/Users/jchap12/Desktop/BIOINFORMATICS/Annotations/hg19/reg2map_honeybadger2_dnase_enh_p2.bed.gz"
-#peaks='/Users/jchap12/Downloads/SC3.R1.trim.PE2SE.nodup.tn5.pf.pval0.01.300K.filt.narrowPeak.gz'
+# outname='GFP_K27me3.rep3'
+# final_bed='GFP_K27me3.rep3.bam.bed'
+# dnase_regions="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/reg2map_honeybadger2_dnase_all_p10_ucsc.bed.gz"
+# blacklist_regions="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/hg19EncodeMapabilityBlacklist.bed"
+# prom_regions="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/reg2map_honeybadger2_dnase_prom_p2.bed.gz"
+# enh_regions="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/reg2map_honeybadger2_dnase_enh_p2.bed.gz"
+# peaks='GFP_K27me3.rep3.FDRe1.Peaks.bed'
 
 ##### Function: run get_fract_reads_in_regions on reginon
 def get_signal_to_noise(final_bed, dnase_regions, blacklist_regions, 

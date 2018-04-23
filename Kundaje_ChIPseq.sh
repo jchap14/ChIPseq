@@ -1,11 +1,7 @@
 #!/bin/bash
 
 ##### Submission script for BDS controlled ChIPseq pipeline
-
-##### for x in `/bin/ls *.untrimmed.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
-##### for x in `/bin/ls *.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
-
-source activate aquas_chipseq_py3
+## for x in `/bin/ls *.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
 
 ##### specify variables to pass to chipseq.py
 FASTQR1=$1
@@ -21,8 +17,8 @@ CHIPTYPE="histone"
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash
 
-## add modules & source specific conda environment
-source activate aquas_chipseq_py3
+## conda environment
+## don't source conda envs, they are auto-activated by the bds pipeline
 
 ##### run script
 ## -type can be histone or TF
@@ -37,4 +33,4 @@ EOF
 ## qsub then remove the tempscript
 bash $NAME.tempscript.sh
 sleep 1
-# rm $NAME.tempscript.sh
+rm $NAME.tempscript.sh
