@@ -9,8 +9,10 @@ FASTQR1=$1
 # FASTQR2=`echo $NAME.untrimmed.R2.fq.gz`
 NAME=`basename $FASTQR1 .trim.R1.fq.gz`
 FASTQR2=`echo $NAME.trim.R2.fq.gz`
-CHIPTYPE="histone"
-# CHIPTYPE="TF"
+
+##### Input type of factor for CHIPTYPE variable!
+# CHIPTYPE="histone"
+CHIPTYPE="TF"
 
 
 ## create tempscript
@@ -24,7 +26,7 @@ cat > $NAME.tempscript.sh << EOF
 ## -type can be histone or TF
 
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
--type histone --screen $NAME -pe -species hg19 -nth 12 \
+-type $CHIPTYPE --screen $NAME -pe -species hg19 -nth 12 \
 -fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G
 
 ## deactivate conda environment
