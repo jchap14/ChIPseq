@@ -14,7 +14,6 @@ FASTQR2=`echo $NAME.trim.R2.fq.gz`
 # CHIPTYPE="histone"
 CHIPTYPE="TF"
 
-
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
 #!/bin/bash
@@ -27,7 +26,7 @@ cat > $NAME.tempscript.sh << EOF
 
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type $CHIPTYPE --screen $NAME -pe -species hg19 -nth 12 \
--fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G
+-fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G -peak_caller macs2
 
 ## deactivate conda environment
 EOF
