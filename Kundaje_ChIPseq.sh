@@ -11,8 +11,8 @@ NAME=`basename $FASTQR1 .trim.R1.fq.gz`
 FASTQR2=`echo $NAME.trim.R2.fq.gz`
 
 ##### Input type of factor for CHIPTYPE variable!
-# CHIPTYPE="histone"
-CHIPTYPE="TF"
+CHIPTYPE="histone"
+# CHIPTYPE="TF"
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
