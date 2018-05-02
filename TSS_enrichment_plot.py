@@ -144,7 +144,7 @@ if __name__ == '__main__':
     # Parse the arguments
     args = parseArguments()
 
-    # Raw print arguments
+    # Print arguments
     print("You are running the script with arguments: ")
     for a in args.__dict__:
         print(str(a) + ": " + str(args.__dict__[a]))
