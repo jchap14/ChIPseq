@@ -14,6 +14,7 @@ source activate TSS_enrichment_py27
 BAM_FILE=`echo $1`
 ## THRESHOLD is not an FDR, but score based?
 PREFIX=`basename $BAM_FILE .bam`
+NAME=`echo $PREFIX`
 ## set annotation directory
 ANNO_DIR="/srv/gsfs0/projects/snyder/chappell/Annotations/UCSC-hg19/" #scg
 # ANNO_DIR="/Users/jchap12/Downloads/" #local
@@ -25,22 +26,21 @@ BINS=400
 PROCESSES=8
 GREENLEAF_NORM="True"
 #
-NAME=`echo $PREFIX`
 EXE_DIR="/srv/gsfs0/projects/snyder/chappell/scripts/ChIPseq/" #scg
 # EXE_DIR="/Users/jchap12/Desktop/BIOINFORMATICS/ChIPseq/" #local
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
-#!/bin/bash
-#$ -N $NAME.TSSplot
-#$ -S /bin/bash
-#$ -j y
-#$ -cwd
-#$ -V
-#$ -l h_vmem=4G
-#$ -pe shm 1
-#$ -l h_rt=0:59:00
-#$ -l s_rt=0:59:00
+#!/bin/bash -l
+#SBATCH --job-name $NAME.TSSplot
+#SBATCH --output=$NAME.TSSplot.out
+#SBATCH --mail-user jchap14@stanford.edu
+#SBATCH --mail-type=ALL
+# Request run time & memory
+#SBATCH --time=1:0:0
+#SBATCH --mem=4G
+#SBATCH --account=mpsnyder
+#SBATCH --nodes=1
 
 ## add modules & source specific conda environment
 source activate TSS_enrichment_py27
@@ -73,6 +73,6 @@ EOF
 
 ## qsub then remove the tempscript
 # bash $NAME.tempscript.sh #local
-qsub $NAME.tempscript.sh #scg
+sbatch $NAME.tempscript.sh #scg
 sleep 1
 rm $NAME.tempscript.sh
