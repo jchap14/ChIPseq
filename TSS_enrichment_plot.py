@@ -1,6 +1,6 @@
 ##### load required modules
-# import matplotlib
-# matplotlib.use('Agg')
+import matplotlib
+matplotlib.use('Agg')
 
 import os
 import logging
@@ -153,10 +153,6 @@ if __name__ == '__main__':
     make_tss_plot(args.bam_file, args.tss, args.prefix, args.chromsizes,
                   args.read_len, args.bins, args.bp_edge, args.processes,
                   args.greenleaf_norm)
-
-
-
-
 
 
 

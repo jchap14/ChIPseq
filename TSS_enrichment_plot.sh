@@ -38,6 +38,7 @@ cat > $NAME.tempscript.sh << EOF
 #SBATCH --mem=4G
 #SBATCH --account=mpsnyder
 #SBATCH --nodes=1
+#SBATCH --export=ALL
 
 ## add modules & source specific conda environment
 source activate TSS_enrichment_py27
@@ -73,4 +74,4 @@ EOF
 # bash $NAME.tempscript.sh #local
 sbatch $NAME.tempscript.sh #scg
 sleep 1
-# rm $NAME.tempscript.sh
+rm $NAME.tempscript.sh
