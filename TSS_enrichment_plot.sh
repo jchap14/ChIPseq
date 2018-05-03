@@ -7,9 +7,6 @@
 ##### submit for all samples in CWD
 # for x in `/bin/ls *.bam` ; do bash TSS_enrichment_plot.sh $x; done
 
-##### set environment
-source activate TSS_enrichment_py27
-
 ##### specify variables to pass to TSS_enrichment_plot.py
 BAM_FILE=`echo $1`
 ## THRESHOLD is not an FDR, but score based?
@@ -37,20 +34,14 @@ cat > $NAME.tempscript.sh << EOF
 #SBATCH --mail-user jchap14@stanford.edu
 #SBATCH --mail-type=ALL
 # Request run time & memory
-#SBATCH --time=1:0:0
+#SBATCH --time=1:00:00
 #SBATCH --mem=4G
 #SBATCH --account=mpsnyder
 #SBATCH --nodes=1
 
 ## add modules & source specific conda environment
 source activate TSS_enrichment_py27
-## test for correct environment activation
-echo "the current conda env is" $(conda env list | grep \* | cut -f1 -d ' ')
-if [[ $(conda env list | grep \* | cut -f1 -d ' ') == "TSS_enrichment_py27" ]]
-then
-    echo "the conda environment is TSS_enrichment_py27"
-fi
-
+echo "The current Conda environment is" $(conda env list | grep \* | cut -f1 -d ' ')
 
 ## index bam file
 if [ -f $(echo $BAM_FILE.bai) ]
@@ -82,4 +73,4 @@ EOF
 # bash $NAME.tempscript.sh #local
 sbatch $NAME.tempscript.sh #scg
 sleep 1
-rm $NAME.tempscript.sh
+# rm $NAME.tempscript.sh
