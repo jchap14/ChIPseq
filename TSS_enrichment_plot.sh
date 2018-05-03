@@ -44,6 +44,13 @@ cat > $NAME.tempscript.sh << EOF
 
 ## add modules & source specific conda environment
 source activate TSS_enrichment_py27
+## test for correct environment activation
+echo "the current conda env is" $(conda env list | grep \* | cut -f1 -d ' ')
+if [[ $(conda env list | grep \* | cut -f1 -d ' ') == "TSS_enrichment_py27" ]]
+then
+    echo "the conda environment is TSS_enrichment_py27"
+fi
+
 
 ## index bam file
 if [ -f $(echo $BAM_FILE.bai) ]
