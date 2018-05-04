@@ -3,8 +3,10 @@
 ##### Submission script for BDS controlled ChIPseq pipeline
 ## for x in `/bin/ls *.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
 
-##### input files to pass to chipseq.py (FQs should be trimmed)
+##### specify variables to pass to chipseq.py
 FASTQR1=$1
+# NAME=`basename $FASTQR1 .untrimmed.R1.fq.gz`
+# FASTQR2=`echo $NAME.untrimmed.R2.fq.gz`
 NAME=`basename $FASTQR1 .trim.R1.fq.gz`
 FASTQR2=`echo $NAME.trim.R2.fq.gz`
 
