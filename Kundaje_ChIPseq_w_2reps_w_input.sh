@@ -2,11 +2,11 @@
 ##### Submission script for BDS controlled ChIPseq pipeline
 
 ##### forloop batch submission command (don't use if input controls are different)
-## for x in `/bin/ls *.repA.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
+## for x in `/bin/ls *.repA.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq_w_2reps_w_input.sh $x; done
 
 ##### INPUTs required
 ## the input control file name
-FQ_INPUT_CNTL_PRE="caGFP.Input.repAB" #caMEK5.Input.repAB
+FQ_INPUT_CNTL_PRE="GFP.Input.repAB" #caMEK5.Input.repAB
 ## type of factor for ChIP (-type in python script)
 CHIPTYPE="histone"
 # CHIPTYPE="TF"
@@ -14,11 +14,11 @@ CHIPTYPE="histone"
 ##### input files to pass to chipseq.py (FQs should be trimmed)
 ## calc replicate 1 FQs (format == $NAME.repB)
 FQ_REPA_R1=$1
-NAME=`basename $FQ_REPA_R1 .trim.R1.fq.gz`
-FQ_REPA_R2=`echo $NAME.trim.R2.fq.gz`
+NAME=`basename $FQ_REPA_R1 .repA.trim.R1.fq.gz`
+FQ_REPA_R2=`echo $NAME.repA.trim.R2.fq.gz`
 ## calc replicate 2 FQs (format == $NAME.repB)
-FQ_REPB_R1=`echo $NAME.trim.R2.fq.gz`
-FQ_REPB_R2=`echo $NAME.trim.R2.fq.gz`
+FQ_REPB_R1=`echo $NAME.repB.trim.R1.fq.gz`
+FQ_REPB_R2=`echo $NAME.repB.trim.R2.fq.gz`
 ## calc input control FQs
 FQ_INPUT_CNTL_R1=`echo $FQ_INPUT_CNTL_PRE.trim.R1.fq.gz`
 FQ_INPUT_CNTL_R2=`echo $FQ_INPUT_CNTL_PRE.trim.R2.fq.gz`
