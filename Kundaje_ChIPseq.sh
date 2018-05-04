@@ -24,7 +24,8 @@ cat > $NAME.tempscript.sh << EOF
 
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type $CHIPTYPE --screen $NAME -pe -species hg19 -nth 12 \
--fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G -peak_caller macs2
+-fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G -peak_caller macs2 \
+-q mpsnyder
 
 ## deactivate conda environment
 EOF
