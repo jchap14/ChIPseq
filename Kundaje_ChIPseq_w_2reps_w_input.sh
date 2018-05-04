@@ -36,7 +36,7 @@ python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -fastq1_1 $FQ_REPA_R1 -fastq1_2 $FQ_REPA_R2 \
 -fastq2_1 $FQ_REPB_R1 -fastq2_2 $FQ_REPB_R2 \
 -ctl_fastq1_1 $FQ_INPUT_CNTL_R1 -ctl_fastq1_2 $FQ_INPUT_CNTL_R2 \
--out_dir $NAME -mem_dedup 15G -q mpsnyder
+-out_dir $NAME -mem_dedup 15G -system slurm -q_for_slurm_account -q mpsnyder
 
 ## end tempscript
 EOF
