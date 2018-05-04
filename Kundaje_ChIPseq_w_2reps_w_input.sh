@@ -44,5 +44,5 @@ EOF
 
 ## bash the script (will submit BDS job), then remove the tempscript
 bash $NAME.tempscript.sh
-sleep 1
-rm $NAME.tempscript.sh
+sleep 2
+# rm $NAME.tempscript.sh
