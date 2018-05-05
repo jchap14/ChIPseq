@@ -6,7 +6,7 @@
 
 ##### INPUTs required
 ## the input control file name
-FQ_INPUT_CNTL_PRE="GFP.Input.repAB" #caMEK5.Input.repAB
+FQ_INPUT_CNTL_PRE="MEK.Input.repAB" #MEK.Input.repAB
 ## type of factor for ChIP (-type in python script)
 CHIPTYPE="histone"
 # CHIPTYPE="TF"
