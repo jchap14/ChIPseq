@@ -8,8 +8,8 @@
 ## the input control file name
 FQ_INPUT_CNTL_PRE="MEK.Input.repAB" #MEK.Input.repAB
 ## type of factor for ChIP (-type in python script)
-CHIPTYPE="histone"
-# CHIPTYPE="TF"
+# CHIPTYPE="histone"
+CHIPTYPE="TF"
 
 ##### input files to pass to chipseq.py (FQs should be trimmed)
 ## calc replicate 1 FQs (format == $NAME.repB)
