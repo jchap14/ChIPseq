@@ -10,9 +10,9 @@ CHIPTYPE="histone"
 
 ##### input files to pass to chipseq.py (FQs should be trimmed)
 ## calc replicate 1 FQs (format == $NAME.repB)
-FQ_REPA_R1=$1
-NAME=`basename $FQ_REPA_R1 .repA.trim.R1.fq.gz`
-FQ_REPA_R2=`echo $NAME.repA.trim.R2.fq.gz`
+FQ_R1=$1
+NAME=`basename $FQ_R1 .trim.R1.fq.gz`
+FQ_R2=`echo $NAME.trim.R2.fq.gz`
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
@@ -27,7 +27,7 @@ cat > $NAME.tempscript.sh << EOF
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type $CHIPTYPE --screen $NAME -system slurm -q_for_slurm_account -q mpsnyder \
 -pe -species hg19 -nth 12 \
--fastq1_1 $FQ_REPA_R1 -fastq1_2 $FQ_REPA_R2 \
+-fastq1_1 $FQ_R1 -fastq1_2 $FQ_R2 \
 -out_dir $NAME -mem_dedup 20G -mem_bwa 20G -mem_spp 20G
 
 ## deactivate conda environment
