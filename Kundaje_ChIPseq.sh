@@ -3,14 +3,16 @@
 ##### Submission script for BDS controlled ChIPseq pipeline
 ## for x in `/bin/ls *.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq.sh $x; done
 
-##### input files to pass to chipseq.py (FQs should be trimmed)
-FASTQR1=$1
-NAME=`basename $FASTQR1 .trim.R1.fq.gz`
-FASTQR2=`echo $NAME.trim.R2.fq.gz`
-
-##### Input type of factor for CHIPTYPE variable!
+##### INPUTs required
+## type of factor for ChIP (-type in python script)
 CHIPTYPE="histone"
 # CHIPTYPE="TF"
+
+##### input files to pass to chipseq.py (FQs should be trimmed)
+## calc replicate 1 FQs (format == $NAME.repB)
+FQ_REPA_R1=$1
+NAME=`basename $FQ_REPA_R1 .repA.trim.R1.fq.gz`
+FQ_REPA_R2=`echo $NAME.repA.trim.R2.fq.gz`
 
 ## create tempscript
 cat > $NAME.tempscript.sh << EOF
@@ -23,9 +25,10 @@ cat > $NAME.tempscript.sh << EOF
 ## -type can be histone or TF
 
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
--type $CHIPTYPE --screen $NAME -pe -species hg19 -nth 12 \
--fastq1_1 $FASTQR1 -fastq1_2 $FASTQR2 -out_dir $NAME -mem_dedup 15G -peak_caller macs2 \
--q mpsnyder
+-type $CHIPTYPE --screen $NAME -system slurm -q_for_slurm_account -q mpsnyder \
+-pe -species hg19 -nth 12 \
+-fastq1_1 $FQ_REPA_R1 -fastq1_2 $FQ_REPA_R2 \
+-out_dir $NAME -mem_dedup 20G -mem_bwa 20G -mem_spp 20G
 
 ## deactivate conda environment
 EOF
