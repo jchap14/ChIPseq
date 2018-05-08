@@ -28,7 +28,7 @@ python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type $CHIPTYPE --screen $NAME -system slurm -q_for_slurm_account -q mpsnyder \
 -pe -species hg19 -nth 12 \
 -fastq1_1 $FQ_R1 -fastq1_2 $FQ_R2 \
--out_dir $NAME -mem_dedup 20G -mem_bwa 20G -mem_spp 20G
+-out_dir $NAME -mem_dedup 20G -mem_bwa 50G -mem_spp 20G
 
 ## deactivate conda environment
 EOF
