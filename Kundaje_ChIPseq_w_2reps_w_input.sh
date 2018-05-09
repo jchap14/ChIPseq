@@ -34,7 +34,7 @@ cat > $NAME.tempscript.sh << EOF
 ##### run chipseq.py ('-peak_caller macs2' left out w inputs included)
 python /srv/gsfs0/projects/snyder/chappell/TF_chipseq_pipeline/chipseq.py \
 -type $CHIPTYPE --screen $NAME -system slurm -q_for_slurm_account -q mpsnyder \
--pe -species hg19 -nth 12 \
+-pe -species hg19 -nth 12 -peak_caller macs2 \
 -fastq1_1 $FQ_REPA_R1 -fastq1_2 $FQ_REPA_R2 \
 -fastq2_1 $FQ_REPB_R1 -fastq2_2 $FQ_REPB_R2 \
 -ctl_fastq1_1 $FQ_INPUT_CNTL_R1 -ctl_fastq1_2 $FQ_INPUT_CNTL_R2 \
