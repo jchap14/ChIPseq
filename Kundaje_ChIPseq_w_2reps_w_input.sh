@@ -6,12 +6,10 @@
 
 ##### INPUTs required
 ## the input control file name
-# FQ_INPUT_CNTL_PRE="caGFP.Input.repAB"
-FQ_INPUT_CNTL_PRE="caMEK5.Input.repAB"
+FQ_INPUT_CNTL_PRE="caGFP.Input.repAB"
+# FQ_INPUT_CNTL_PRE="caMEK5.Input.repAB"
 ## type of factor for ChIP (-type in python script)
-# CHIPTYPE="histone"
-# CHIPTYPE="TF"
-CHIPTYPE=${2:-histone}
+CHIPTYPE=${2:-histone} #can specify TF as positional argument 2
 
 ##### input files to pass to chipseq.py (FQs should be trimmed)
 ## calc replicate 1 FQs (format == $NAME.repB)
