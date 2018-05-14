@@ -36,6 +36,7 @@ cat > $NAME.tempscript.sh << EOF
 # Request run time & memory
 #SBATCH --time=1:00:00
 #SBATCH --mem=4G
+#SBATCH --ntasks-per-node=4
 #SBATCH --account=mpsnyder
 #SBATCH --nodes=1
 #SBATCH --export=ALL
