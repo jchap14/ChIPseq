@@ -2,15 +2,16 @@
 ##### Submission script for BDS controlled ChIPseq pipeline
 
 ##### forloop batch submission command (don't use if input controls are different)
-## for x in `/bin/ls caGFP.*.repA.trim.R1.fq.gz` ; do bash Kundaje_ChIPseq_w_2reps_w_input.sh $x; done
+## for x in `find caMEK5.*.repA.trim.R1.fq.gz | grep -v "KLF"` ; do bash Kundaje_ChIPseq_w_2reps_w_input.sh $x <histone (default) or TF>; done
 
 ##### INPUTs required
 ## the input control file name
 # FQ_INPUT_CNTL_PRE="caGFP.Input.repAB"
 FQ_INPUT_CNTL_PRE="caMEK5.Input.repAB"
 ## type of factor for ChIP (-type in python script)
-CHIPTYPE="histone"
+# CHIPTYPE="histone"
 # CHIPTYPE="TF"
+CHIPTYPE=${2:-histone}
 
 ##### input files to pass to chipseq.py (FQs should be trimmed)
 ## calc replicate 1 FQs (format == $NAME.repB)
